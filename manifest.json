@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Todo Extension",
+  "description": "A Todo List, as an Extension",
+  "version": "1.0",
+  "action": {
+    "default_popup": "todo.html",
+    "default_icon": "hello_extensions.png"
+  }
+}
