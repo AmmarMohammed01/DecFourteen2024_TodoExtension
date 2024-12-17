@@ -1,20 +1,26 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .title {
-  color: rgb(14,28,120);
+  color: white;
   text-align: center;
   margin: 0px;
-  padding: 10px 100px;
+  padding: 10px 150px;
 }
 
 .title-container {
-  background-color: #FFEDE1;
+  background-color: #D81E5B;
 }
 
 .body-container {
-  background-color: #D7F9FF;
+  background-color: #FDF0D5;
+  padding: 10px 0px;
 }
 
 .task-input {
-  margin: 10px 5px;
+  margin-left: 10px;
+  margin-bottom: 10px;
   border: solid;
   border-radius: 10px;
   border-color: rgb(14,28,120);
@@ -23,17 +29,42 @@
 
 .task-output {
   margin: 0px 5px;
-  color: rgb(14,28,120);
+  color: white;
+}
+
+.task-container {
+  background-color: #77B6EA;
+  padding: 10px 20px;
+  margin: 5px 0px;
+  display: grid;
+  grid-template-columns: 1fr 70px;
+  border-radius: 10px;
+}
+
+.task-name {
+  text-align: left;
+  font-size: 18px;
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: 40px 40px;
+  place-items: center;
 }
 
 button {
-  border-radius: 20px;
+  border: none;
+  border-color: white;
+  border-radius: 30px;
+  width: 35px;
+  height: 35px;
+  background-color: #828A95;
 }
 
 .complete-button {
-  background-color: transparent;
+  
 }
 
 .is-complete-button {
-  background-color: rgb(0,255,0); 
+  background-color: #0CF574; 
 }

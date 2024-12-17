@@ -29,12 +29,18 @@ function renderList() {
   //render list
   let generateHTML = '';
   list.forEach( (task, index) => {
-    let cBtn = task.isComplete ? `<button class="is-complete-button js-complete-button" data-id="${index}">C</button>` : `<button class="complete-button js-complete-button" data-id="${index}">C</button>`;
+    let cBtn = task.isComplete ? `<button class="is-complete-button js-complete-button" data-id="${index}">&#10003;</button>` : `<button class="complete-button js-complete-button" data-id="${index}">&#10003;</button>`;
+    let dBtn = `<button class="js-delete-button" data-id="${index}">&#9003;</button>`;
+//&#x1F5D1;
+//&#128465;
 
     generateHTML += `
-    <div>${task.taskName}
-      ${cBtn}
-      <button class="js-delete-button" data-id="${index}">D</button> 
+    <div class="task-container">
+      <div class="task-name">${task.taskName}</div>
+      <div class="button-container">
+        <div>${cBtn}</div>
+        <div>${dBtn}</div>
+      </div>
     </div>
     `;
   });
