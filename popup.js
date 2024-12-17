@@ -7,21 +7,24 @@ if(!list) {
 
 //Grab input and output elements
 const inputElement = document.querySelector('.js-task-input');
+const addButtonElement = document.querySelector('.js-add-button');
 const outputElement = document.querySelector('.js-task-output');
-
-//Test to see if correct element is grabbed
-console.log(inputElement);
-console.log(outputElement);
 
 //Add task: Get the input value when user presses 'Enter'
 inputElement.addEventListener('keydown', () => {
   if(event.key === 'Enter') {
     list.push({taskName: inputElement.value, isComplete: false});
     saveToStorage();
-
     renderList();
     inputElement.value = '';
   }
+});
+
+addButtonElement.addEventListener('click', () => {
+  list.push({taskName: inputElement.value, isComplete: false});
+  saveToStorage();
+  renderList();
+  inputElement.value = '';
 });
 
 //render tasks on screen
