@@ -1,10 +1,18 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="todo.css"></link>
+  </head>
   <body>
-    <h1>Todo Extension</h1>
 
-    <input class="js-task-input" type="text" placeholder="Type task here">
+    <div class="title-container">
+      <h1 class="title">Todo Extension</h1>
+    </div>
 
-    <div class="js-task-output"></div>
+    <div class="body-container">
+      <input class="task-input js-task-input" type="text" placeholder="Type task here">
+
+      <div class="task-output js-task-output"></div>
+    </div>
 
     <script src="popup.js"></script>
   </body>

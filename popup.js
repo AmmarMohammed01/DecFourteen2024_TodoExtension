@@ -2,6 +2,7 @@ let list = JSON.parse( localStorage.getItem('todo-extension-list') );
 
 if(!list) {
   list = [];
+  //list = [{taskName: "name", isComplete: true}];
 }
 
 //Grab input and output elements
@@ -15,7 +16,7 @@ console.log(outputElement);
 //Add task: Get the input value when user presses 'Enter'
 inputElement.addEventListener('keydown', () => {
   if(event.key === 'Enter') {
-    list.push(inputElement.value);
+    list.push({taskName: inputElement.value, isComplete: false});
     saveToStorage();
 
     renderList();
@@ -28,15 +29,30 @@ function renderList() {
   //render list
   let generateHTML = '';
   list.forEach( (task, index) => {
-    generateHTML += `<div>${task} <button class="js-delete-button" data-id="${index}">Delete</button> </div>`
+    let cBtn = task.isComplete ? `<button class="is-complete-button js-complete-button c-btn-${index}" data-id="${index}">C</button>` : `<button class="complete-button js-complete-button c-btn-${index}" data-id="${index}">C</button>`;
+
+    generateHTML += `
+    <div>${task.taskName}
+      ${cBtn}
+      <button class="js-delete-button" data-id="${index}">D</button> 
+    </div>
+    `;
   });
   outputElement.innerHTML = generateHTML;
 
   //delete task buttons
-  const deleteButton = document.querySelectorAll('.js-delete-button');
-  deleteButton.forEach((button) => {
+  const deleteButtons = document.querySelectorAll('.js-delete-button');
+  deleteButtons.forEach((button) => {
     button.addEventListener('click', () => {
       deleteTask(button.dataset.id);
+    });
+  });
+
+  //complete task button
+  const completeButtons = document.querySelectorAll('.js-complete-button');
+  completeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      completeTask(button.dataset.id);
     });
   });
 }
@@ -53,6 +69,23 @@ function deleteTask(index) {
 
 function saveToStorage() {
   localStorage.setItem('todo-extension-list', JSON.stringify(list));
+}
+
+function completeTask(index) {
+  if(list[index].isComplete === false) {
+    list[index].isComplete = true;
+    // document.querySelector(`.c-btn-${index}`).classList.add('is-complete-button');
+    // document.querySelector(`.c-btn-${index}`).classList.remove('complete-button');
+  }
+  else {
+    list[index].isComplete = false;
+    // document.querySelector(`.c-btn-${index}`).classList.remove('is-complete-button');
+    // document.querySelector(`.c-btn-${index}`).classList.add('complete-button');
+  }
+  
+  saveToStorage();
+  renderList();
+  console.log(list);
 }
 
 renderList(); //render list at runtime

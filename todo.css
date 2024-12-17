@@ -1,0 +1,39 @@
+.title {
+  color: rgb(14,28,120);
+  text-align: center;
+  margin: 0px;
+  padding: 10px 100px;
+}
+
+.title-container {
+  background-color: #FFEDE1;
+}
+
+.body-container {
+  background-color: #D7F9FF;
+}
+
+.task-input {
+  margin: 10px 5px;
+  border: solid;
+  border-radius: 10px;
+  border-color: rgb(14,28,120);
+  padding: 5px 10px;
+}
+
+.task-output {
+  margin: 0px 5px;
+  color: rgb(14,28,120);
+}
+
+button {
+  border-radius: 20px;
+}
+
+.complete-button {
+  background-color: transparent;
+}
+
+.is-complete-button {
+  background-color: rgb(0,255,0); 
+}
