@@ -5,6 +5,6 @@
   "version": "1.0",
   "action": {
     "default_popup": "todo.html",
-    "default_icon": "hello_extensions.png"
+    "default_icon": "pencil.png"
   }
 }
