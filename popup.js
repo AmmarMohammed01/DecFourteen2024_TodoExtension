@@ -1,49 +1,30 @@
-//console.log("This is a popup!) //<-- this was used to show how to look at errors for popups
-list = []
+let list = [];
 
+//Grab input and output elements
 const inputElement = document.querySelector('.js-task-input');
 const outputElement = document.querySelector('.js-task-output');
 
+//Test to see if correct element is grabbed
+console.log(inputElement);
+console.log(outputElement);
 
-inputElement.addEventListener('keydown', event => {handleKeyDown(event)});
-
-function handleKeyDown(event) {
-  if(event.key === 'Enter')
-    addTask();
-}
-
-function addTask() {
-  //outputElement.innerHTML = inputElement.value;
-  let output = "";
-  list.push(inputElement.value)
-  list.forEach( (value, index) => {
-    output += `<p>${value} <button class="deleteBtn" data-index=${index})">Del</button> </p>`
-    //<p>${value} <button id=${index}>Del</button> </p>
-  } )
-
-  //outputElement.innerHTML = output;
-  inputElement.value = "";
-  outputElement.innerHTML = output;
-  const deleteButton = document.querySelector('.deleteBtn');
-  deleteButton.addEventListener('click', (event) => {
-  const indexToDelete = event.target.getAttribute('data-index');
-  removeTask(indexToDelete); // Call function to remove the task
+//Get the input value when user presses 'Enter'
+inputElement.addEventListener('keydown', () => {
+  if(event.key === 'Enter') {
+    list.push(inputElement.value);
+    renderList();
+    inputElement.value = '';
+  }
 });
-  
-}
 
-function removeTask(index) {
-  console.log(index);
-  list.splice(index, 1);
-  console.log(list);
+//render tasks on screen
+function renderList() {
+  let generateHTML = '';
 
-  outputElement.innerHTML = "";
+  list.forEach( (task) => {
+    generateHTML += `<p>${task}</p>`
+  });
 
-  let output = "";
-  list.forEach( (value, index) => {
-    output += `<p>${value} <button class="deleteBtn" data-index=${index})">Del</button> </p>`
-  } )
-
-  //<p id=${index}>${value} <button onclick=" removeTask(${index})">Del</button> </p>
-  outputElement.innerHTML = output;
+  outputElement.innerHTML = generateHTML;
+  console.log(list);  
 }
