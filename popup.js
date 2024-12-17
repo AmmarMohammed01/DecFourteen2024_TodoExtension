@@ -21,10 +21,28 @@ inputElement.addEventListener('keydown', () => {
 function renderList() {
   let generateHTML = '';
 
-  list.forEach( (task) => {
-    generateHTML += `<p>${task}</p>`
+  list.forEach( (task, index) => {
+    generateHTML += `<div>${task} <button class="js-delete-button" data-id="${index}">Delete</button> </div>`
   });
 
   outputElement.innerHTML = generateHTML;
-  console.log(list);  
+
+  const deleteButton = document.querySelectorAll('.js-delete-button'); //this is an array of all button elements, each element must be accessed individually
+  // console.log(JSON.stringify(deleteButton));
+  // console.log(deleteButton);
+  console.log(list);
+  
+  deleteButton.forEach((button) => {
+    button.addEventListener('click', () => {
+      deleteTask(button.dataset.id);
+    });
+  });
+}
+
+//Deletes a task from list and renders updated list.
+function deleteTask(index) {
+  let deleted = list.splice(index, 1);
+  console.log(`Deleted: ${deleted}`);
+  renderList();
+  
 }
