@@ -59,12 +59,16 @@ button {
   width: 35px;
   height: 35px;
   background-color: #828A95;
-}
-
-.complete-button {
-  
+  color: white;
 }
 
 .is-complete-button {
   background-color: #0CF574; 
+  color: black;
+}
+
+.change-button {
+  border: none;
+  border-radius: 10px;
+  width: 75px;
 }

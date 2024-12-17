@@ -29,17 +29,17 @@ function renderList() {
   //render list
   let generateHTML = '';
   list.forEach( (task, index) => {
-    let cBtn = task.isComplete ? `<button class="is-complete-button js-complete-button" data-id="${index}">&#10003;</button>` : `<button class="complete-button js-complete-button" data-id="${index}">&#10003;</button>`;
+    let cBtn = task.isComplete ? `<button class="is-complete-button js-complete-button" data-id="${index}">&#10003;</button>` : `<button class="js-complete-button" data-id="${index}">&#10003;</button>`;
     let dBtn = `<button class="js-delete-button" data-id="${index}">&#9003;</button>`;
-//&#x1F5D1;
-//&#128465;
+    let eBtn = `<button class="js-edit-button js-specific-edit-button-${index}" data-id=${index}>&#9998;</button>`
 
     generateHTML += `
     <div class="task-container">
-      <div class="task-name">${task.taskName}</div>
+      <div class="task-name js-task-name-${index}">${task.taskName}</div>
       <div class="button-container">
         <div>${cBtn}</div>
         <div>${dBtn}</div>
+        <div>${eBtn}</div>
       </div>
     </div>
     `;
@@ -59,6 +59,13 @@ function renderList() {
   completeButtons.forEach((button) => {
     button.addEventListener('click', () => {
       completeTask(button.dataset.id);
+    });
+  });
+
+  const editButtons = document.querySelectorAll('.js-edit-button');
+  editButtons.forEach( (button) => {
+    button.addEventListener('click', () => {
+      editTask(button.dataset.id);
     });
   });
 }
@@ -89,6 +96,38 @@ function completeTask(index) {
   saveToStorage();
   renderList();
   console.log(list);
+}
+
+function editTask(index) {
+  document.querySelector(`.js-specific-edit-button-${index}`).innerHTML = `<button class="change-button js-specific-edit-button-${index}">Cancel Edit</button>`;
+
+  document.querySelector(`.js-task-name-${index}`).innerHTML = 
+  `<input value="${list[index].taskName}" class="js-edit-task-name-${index}">
+  <button class="change-button js-change-button" data-id=${index}>Change</button>`;
+
+  const inputEditElement = document.querySelector(`.js-edit-task-name-${index}`);
+  inputEditElement.addEventListener('keydown', () => {
+    if(event.key === 'Enter') {
+      list[index].taskName = inputEditElement.value;
+      renderList();
+      saveToStorage();
+    }
+  });
+
+  const changeBtnElement = document.querySelectorAll('.js-change-button');
+  changeBtnElement.forEach((button) => {
+    button.addEventListener('click', () => {
+      list[index].taskName = inputEditElement.value;
+      renderList();
+      saveToStorage();
+    });
+  });
+
+  const cancelEditButton = document.querySelector(`.js-specific-edit-button-${index}`);
+  cancelEditButton.addEventListener('click', () => {
+    renderList();
+  });
+
 }
 
 renderList(); //render list at runtime
