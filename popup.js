@@ -29,7 +29,7 @@ function renderList() {
   //render list
   let generateHTML = '';
   list.forEach( (task, index) => {
-    let cBtn = task.isComplete ? `<button class="is-complete-button js-complete-button c-btn-${index}" data-id="${index}">C</button>` : `<button class="complete-button js-complete-button c-btn-${index}" data-id="${index}">C</button>`;
+    let cBtn = task.isComplete ? `<button class="is-complete-button js-complete-button" data-id="${index}">C</button>` : `<button class="complete-button js-complete-button" data-id="${index}">C</button>`;
 
     generateHTML += `
     <div>${task.taskName}
@@ -74,14 +74,11 @@ function saveToStorage() {
 function completeTask(index) {
   if(list[index].isComplete === false) {
     list[index].isComplete = true;
-    // document.querySelector(`.c-btn-${index}`).classList.add('is-complete-button');
-    // document.querySelector(`.c-btn-${index}`).classList.remove('complete-button');
   }
   else {
     list[index].isComplete = false;
-    // document.querySelector(`.c-btn-${index}`).classList.remove('is-complete-button');
-    // document.querySelector(`.c-btn-${index}`).classList.add('complete-button');
   }
+  //list[index].isComplete = !list[index].isComplete ? true : false; //ternary way 
   
   saveToStorage();
   renderList();
