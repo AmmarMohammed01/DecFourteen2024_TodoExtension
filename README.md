@@ -2,8 +2,10 @@
 ## Author
 By Ammar Mohammed
 
-## Icon link: 
-https://www.flaticon.com/free-icon/pencil_505159?term=pencil&page=1&position=9&origin=search&related_id=505159
+<!--
+OLD ICON LINK
+## Icon link: -->
+<!-- https://www.flaticon.com/free-icon/pencil_505159?term=pencil&page=1&position=9&origin=search&related_id=505159 -->
 
 ## Color Palettes
 https://coolors.co/000000-d81e5b-fdf0d5-77b6ea-828a95
